@@ -1,4 +1,9 @@
+#Zipkin config
 management:
+  tracing:
+    sampling:
+      probability: 1.0
+  #Actuator config
   endpoints:
     web:
       exposure:

@@ -1,0 +1,27 @@
+spring:
+#api gateway config
+  cloud:
+    gateway:
+      routes:
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/api/v1/orders/**
+          filters:
+            - StripPrefix=2
+        - id: inventory-service
+          uri: lb://INVENTORY-SERVICE
+          predicates:
+            - Path=/api/v1/inventory/**
+          filters:
+            - StripPrefix=2
+            - name: LoggingOrdersFilter
+#            - AddRequestHeader=X-Custom-Header, Anuj
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+#lb-> load balancer
+#predicates define what are the conditions like how do you want the request to go through
+#StripPrefix=2 means remove 2 value after slashes like "/api/v1/orders/**" becomes "/orders/**"

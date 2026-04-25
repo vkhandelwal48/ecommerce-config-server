@@ -17,10 +17,6 @@ spring:
             - StripPrefix=2
             - name: LoggingOrdersFilter
 #            - AddRequestHeader=X-Custom-Header, Anuj
-eureka:
-  client:
-    service-url:
-      defaultZone: http://discovery-service:8761/eureka
 
 #lb-> load balancer
 #predicates define what are the conditions like how do you want the request to go through
